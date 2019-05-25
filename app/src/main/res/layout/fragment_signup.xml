@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_login_background"
+    tools:context=".screens.loginscreen.fragments.SignupFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="0.8"
+            android:background="@drawable/login_button_background"
+            android:gravity="center"
+            android:text="@string/signup"
+            android:textColor="@color/gradient_end"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/firstNameWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edtFirstNameSignup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/firstName"
+                android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/lastNameWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edtLastNameSignup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/lastName"
+                android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/emailWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edtEmailSignup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/passwordWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="true"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edtPasswordSignup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/confirmPasswordWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            app:errorEnabled="true"
+            app:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edtConfirmPasswordSignup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/confirmPassword"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/phoneWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edtPhoneSignup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/phoneNumber"
+                android:inputType="phone" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/idWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edtIdSignup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/idNumber"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/areaWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edtAreaSignup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/edittext_background"
+                android:hint="@string/area"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txtBirthdateSignup"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="0.80"
+            android:background="@drawable/edittext_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:hint="@string/birthdate"
+            android:inputType="date"
+            android:textAppearance="?android:attr/textAppearanceMediumInverse"
+            android:textColor="?attr/editTextColor"
+            tools:ignore="TextViewEdits" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="0.80"
+            android:background="@drawable/edittext_background"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:gravity="start"
+                android:text="@string/gender"
+                android:textColor="@color/grey"
+                android:textSize="16sp"
+                tools:ignore="NestedWeights" />
+
+            <CheckBox
+                android:id="@+id/checkboxMale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/check_box_state"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/male"
+                android:textColor="@color/grey"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/checkboxFemale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@drawable/check_box_state"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/female"
+                android:textColor="@color/grey"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCreateAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/signup_button_state"
+            android:text="@string/signup"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center|end"
+                android:text="@string/haveAccount"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:ignore="NestedWeights" />
+
+            <Button
+                android:id="@+id/btnLoginSignupPage"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.35"
+                android:background="@android:color/transparent"
+                android:gravity="center|start"
+                android:text="@string/login"
+                android:textAllCaps="false"
+                android:textColor="@color/gradient_end"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

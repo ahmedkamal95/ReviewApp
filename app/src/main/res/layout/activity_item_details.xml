@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.itemdetailsscreen.ItemDetailsActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/layout_no_internet_connection" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/layout_toolbar" />
+
+            <include layout="@layout/layout_progress_bar" />
+
+            <LinearLayout
+                android:id="@+id/layoutItemDetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.smarteist.autoimageslider.SliderLayout
+                    android:id="@+id/imageSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginBottom="8dp" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:text="Description"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txtDesc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Description"
+                            android:textColor="@color/greyDark"
+                            android:textSize="14sp"
+                            tools:ignore="HardcodedText" />
+
+                        <com.willy.ratingbar.ScaleRatingBar
+                            android:id="@+id/ratingBarDesc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="8dp"
+                            app:srb_clearRatingEnabled="false"
+                            app:srb_clickable="false"
+                            app:srb_drawableEmpty="@drawable/start_empty"
+                            app:srb_drawableFilled="@drawable/star_filled"
+                            app:srb_isIndicator="true"
+                            app:srb_minimumStars="1"
+                            app:srb_numStars="5"
+                            app:srb_scrollable="false"
+                            app:srb_starHeight="20dp"
+                            app:srb_starPadding="10dp"
+                            app:srb_starWidth="20dp" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/textview_commets_background"
+                    android:text="Comments"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/commentWrapperLogin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="30dp"
+                            app:errorEnabled="true"
+                            app:hintAnimationEnabled="true">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/edtComment"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/edittext_comment_background"
+                                android:hint="Comment"
+                                android:inputType="textMultiLine"
+                                tools:ignore="HardcodedText" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <com.willy.ratingbar.ScaleRatingBar
+                            android:id="@+id/ratingBarComment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            app:srb_clearRatingEnabled="true"
+                            app:srb_clickable="true"
+                            app:srb_drawableEmpty="@drawable/start_empty"
+                            app:srb_drawableFilled="@drawable/star_filled"
+                            app:srb_isIndicator="false"
+                            app:srb_minimumStars="1"
+                            app:srb_numStars="5"
+                            app:srb_rating="1"
+                            app:srb_scrollable="true"
+                            app:srb_starHeight="30dp"
+                            app:srb_starPadding="15dp"
+                            app:srb_starWidth="30dp"
+                            app:srb_stepSize="1" />
+
+                        <Button
+                            android:id="@+id/btnAddComment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/signup_button_state"
+                            android:text="Add Comment"
+                            android:textColor="@color/white"
+                            tools:ignore="HardcodedText" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</android.support.v4.widget.NestedScrollView>

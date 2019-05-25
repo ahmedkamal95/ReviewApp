@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Review</string>
+
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="password">Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="createAccount">Create Account</string>
+    <string name="haveAccount">Have an Account?</string>
+    <string name="notMemberYet">Not a member yet?</string>
+    <string name="logout">Logout</string>
+    <string name="phoneNumber">Phone Number (ex:01xxxxxxxxx)</string>
+    <string name="idNumber">ID Number (14 Number)</string>
+    <string name="area">Area</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="gender">Gender:</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="forgetPassword">Forget Password?</string>
+    <string name="resetPassword">Reset Password</string>
+    <string name="tryAgain">Try Again</string>
+    <string name="noInternet">No connection</string>
+    <string name="noInternetMessage">No internet connection found. check your connection and try again</string>
+    <string name="loading">Loading…</string>
+    <string name="search">Search</string>
+
+</resources>

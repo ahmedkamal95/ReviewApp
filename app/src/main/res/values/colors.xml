@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#242A38</color>
+    <color name="colorAccent">#FF8C00</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="blue">#3F51B5</color>
+    <color name="gradient_start">#F78361</color>
+    <color name="gradient_end">#F54B64</color>
+    <color name="grey">#9E9D9D</color>
+    <color name="greyDark">#4E586E</color>
+    <color name="black">#000000</color>
+</resources>
