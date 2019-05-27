@@ -16,6 +16,7 @@ import com.helwan.bis.review.model.dao.MainCategoryItem;
 import com.helwan.bis.review.model.dao.Search;
 import com.helwan.bis.review.model.dao.User;
 import com.helwan.bis.review.screens.additemscreen.AddItemContract;
+import com.helwan.bis.review.screens.additemscreen.AddItemPresenterImpl;
 import com.helwan.bis.review.screens.brandsscreen.BrandsContract;
 import com.helwan.bis.review.screens.homescreen.HomeContract;
 import com.helwan.bis.review.screens.itemdetailsscreen.ItemDetailsContract;
@@ -23,6 +24,7 @@ import com.helwan.bis.review.screens.itemsscreen.ItemsContract;
 import com.helwan.bis.review.screens.searchscreen.SearchPresenterImpl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class FirebaseServices {
@@ -126,6 +128,24 @@ public class FirebaseServices {
         });
     }
 
+    public void fetchBrandsList(AddItemContract.Presenter presenter, String mainCategory) {
+        myRef = database.getReference("mainCategory").child(mainCategory).child("brands");
+        List<Brand> brands = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    brands.add(snapshot.getValue(Brand.class));
+                }
+                presenter.setBrandsList(brands);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
     public void fetchItemsList(ItemsContract.Presenter presenter, String mainCategory, String brandName) {
         myRef = database.getReference("mainCategory").child(mainCategory).child("brands").child(brandName).child("items");
         List<Item> items = new ArrayList<>();
@@ -207,6 +227,80 @@ public class FirebaseServices {
                 }
             });
         }
+    }
+
+    public void insertProduct(AddItemPresenterImpl addItemPresenter, Item item, String mainCategoryName, String brandName, int itemCount) {
+        myRef = database.getReference("mainCategory").child(mainCategoryName).child("brands").child(brandName).child("items").child(item.getName());
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    addItemPresenter.itemExists(true);
+                } else {
+                    myRef = database.getReference("search").child(item.getName());
+                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                Search search1 = dataSnapshot.getValue(Search.class);
+                                if (search1 != null && search1.getBrand().equals(brandName) && search1.getMainCategory().equals(mainCategoryName)) {
+                                    addItemPresenter.itemExists(true);
+                                } else {
+                                    item.setName(item.getName() + " " + brandName);
+                                    myRef = database.getReference("mainCategory").child(mainCategoryName).child("brands").child(brandName).child("items").child(item.getName());
+                                    myRef.setValue(item);
+                                    Search search = new Search();
+                                    search.setBrand(brandName);
+                                    search.setDescription(item.getDescription());
+                                    search.setName(item.getName());
+                                    search.setRateCount(item.getRateCount());
+                                    search.setRateSum(item.getRateSum());
+                                    search.setPrice(item.getPrice());
+                                    search.setMainCategory(mainCategoryName);
+                                    myRef = database.getReference("search").child(item.getName());
+                                    myRef.setValue(search);
+                                    myRef = database.getReference("mainCategory").child(mainCategoryName).child("brands").child(brandName).child("itemCount");
+                                    int count = itemCount + 1;
+                                    myRef.setValue(count);
+
+                                    addItemPresenter.itemExists(false);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    public void insertImage(AddItemPresenterImpl addItemPresenter, String
+            mainCategoryName, String brandName, String itemName, HashMap<String, String> images) {
+        myRef = database.getReference("mainCategory").child(mainCategoryName).child("brands").child(brandName).child("items").child(itemName).child("images");
+        myRef.setValue(images);
+        myRef = database.getReference("search").child(itemName).child("images");
+        myRef.setValue(images);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                addItemPresenter.uploadFinish();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     public String getUserId() {

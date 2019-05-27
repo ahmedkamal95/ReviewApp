@@ -60,6 +60,7 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.app_name));
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        findViewById(R.id.imgLogo).setVisibility(View.VISIBLE);
         setSupportActionBar(toolbar);
     }
 
@@ -180,12 +181,14 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     public void onBackPressed() {
         if (time + 2000 > System.currentTimeMillis()) {
             super.onBackPressed();
-        } else if (!searchView.isIconified()) {
-            searchView.setIconified(true);
         } else {
-            FancyToast.makeText(this, "Press back again to close", FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
+            if (!searchView.isIconified()) {
+                searchView.setIconified(true);
+            } else {
+                FancyToast.makeText(this, "Press back again to close", FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
+                time = System.currentTimeMillis();
+            }
         }
-        time = System.currentTimeMillis();
     }
 
     @Override

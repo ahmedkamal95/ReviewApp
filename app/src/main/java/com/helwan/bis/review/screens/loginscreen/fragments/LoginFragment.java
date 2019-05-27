@@ -1,5 +1,6 @@
 package com.helwan.bis.review.screens.loginscreen.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -78,8 +79,9 @@ public class LoginFragment extends Fragment {
 
         btnForgetPassword.setOnClickListener(v -> {
             AlertDialog dialogBuilder = new AlertDialog.Builder(Objects.requireNonNull(getActivity())).create();
+            Objects.requireNonNull(dialogBuilder.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
             LayoutInflater inflater = this.getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.layout_forget_password_dialog, null);
+            @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.layout_forget_password_dialog, null);
 
             EditText edtEmailForgetPassword = dialogView.findViewById(R.id.edtEmailForgetPassword);
             Button btnForgetPassword = dialogView.findViewById(R.id.btnForgetPassword);

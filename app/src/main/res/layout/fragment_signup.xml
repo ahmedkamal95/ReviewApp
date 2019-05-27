@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_login_background"
-    tools:context=".screens.loginscreen.fragments.SignupFragment">
+    tools:activity=".screens.loginscreen.fragments.SignupFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -291,7 +291,7 @@
                 android:gravity="center|start"
                 android:text="@string/login"
                 android:textAllCaps="false"
-                android:textColor="@color/gradient_end"
+                android:textColor="@color/gradient_start"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
