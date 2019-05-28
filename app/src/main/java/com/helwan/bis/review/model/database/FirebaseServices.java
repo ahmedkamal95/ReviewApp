@@ -247,30 +247,16 @@ public class FirebaseServices {
                                     addItemPresenter.itemExists(true);
                                 } else {
                                     item.setName(item.getName() + " " + brandName);
-                                    myRef = database.getReference("mainCategory").child(mainCategoryName).child("brands").child(brandName).child("items").child(item.getName());
-                                    myRef.setValue(item);
-                                    Search search = new Search();
-                                    search.setBrand(brandName);
-                                    search.setDescription(item.getDescription());
-                                    search.setName(item.getName());
-                                    search.setRateCount(item.getRateCount());
-                                    search.setRateSum(item.getRateSum());
-                                    search.setPrice(item.getPrice());
-                                    search.setMainCategory(mainCategoryName);
-                                    myRef = database.getReference("search").child(item.getName());
-                                    myRef.setValue(search);
-                                    myRef = database.getReference("mainCategory").child(mainCategoryName).child("brands").child(brandName).child("itemCount");
-                                    int count = itemCount + 1;
-                                    myRef.setValue(count);
-
-                                    addItemPresenter.itemExists(false);
+                                    addProduct(addItemPresenter, item, mainCategoryName, brandName, itemCount);
                                 }
+                            } else {
+                                addProduct(addItemPresenter, item, mainCategoryName, brandName, itemCount);
                             }
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                            addItemPresenter.toast(databaseError.getMessage(),"Error");
                         }
                     });
 
@@ -279,8 +265,30 @@ public class FirebaseServices {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                addItemPresenter.toast(databaseError.getMessage(),"Error");
+
             }
         });
+    }
+
+    private void addProduct(AddItemPresenterImpl addItemPresenter, Item item, String mainCategoryName, String brandName, int itemCount){
+        myRef = database.getReference("mainCategory").child(mainCategoryName).child("brands").child(brandName).child("items").child(item.getName());
+        myRef.setValue(item);
+        Search search = new Search();
+        search.setBrand(brandName);
+        search.setDescription(item.getDescription());
+        search.setName(item.getName());
+        search.setRateCount(item.getRateCount());
+        search.setRateSum(item.getRateSum());
+        search.setPrice(item.getPrice());
+        search.setMainCategory(mainCategoryName);
+        myRef = database.getReference("search").child(item.getName());
+        myRef.setValue(search);
+        myRef = database.getReference("mainCategory").child(mainCategoryName).child("brands").child(brandName).child("itemCount");
+        int count = itemCount + 1;
+        myRef.setValue(count);
+
+        addItemPresenter.itemExists(false);
     }
 
     public void insertImage(AddItemPresenterImpl addItemPresenter, String
@@ -297,7 +305,7 @@ public class FirebaseServices {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                addItemPresenter.toast(databaseError.getMessage(),"Error");
             }
         });
 

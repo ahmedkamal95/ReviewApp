@@ -75,6 +75,11 @@ public class AddItemPresenterImpl implements AddItemContract.Presenter {
     }
 
     @Override
+    public void toast(String message, String type) {
+        view.toast(message,type);
+    }
+
+    @Override
     public void onDestroy() {
         uploadImageServices.onDestroy();
         view = null;

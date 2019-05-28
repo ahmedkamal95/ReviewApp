@@ -21,6 +21,8 @@ public interface AddItemContract {
         void uploadFinish();
 
         void itemExists(boolean isExist);
+
+        void toast(String message, String type);
     }
 
     interface Presenter {
@@ -43,6 +45,8 @@ public interface AddItemContract {
         void uploadFinish();
 
         void itemExists(boolean isExist);
+
+        void toast(String message, String type);
 
         void onDestroy();
     }

@@ -43,7 +43,8 @@ public class UploadImageServices implements UploadImageServicesInterface {
                                         }
                                         setImageUrl(uri.toString(), "image" + finalI, finish.get());
                                         count[0]++;
-                                    }));
+                                    }))
+                    .addOnFailureListener(e -> presenter.toast(e.getMessage(), "Error"));
         }
     }
 

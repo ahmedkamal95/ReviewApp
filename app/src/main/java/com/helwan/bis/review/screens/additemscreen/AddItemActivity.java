@@ -273,6 +273,16 @@ public class AddItemActivity extends AppCompatActivity implements AddItemContrac
         }
     }
 
+    @Override
+    public void toast(String message, String type) {
+        alertDialog.dismiss();
+        if (type.equals("Error")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+        } else if (type.equals("Success")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+        }
+    }
+
     public void removeImage(String imageKey, int position) {
         imagesKey.remove(imageKey);
         imagesUri.remove(position);
