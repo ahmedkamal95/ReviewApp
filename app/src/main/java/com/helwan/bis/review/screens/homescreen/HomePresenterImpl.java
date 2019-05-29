@@ -26,6 +26,11 @@ public class HomePresenterImpl implements HomeContract.Presenter {
     }
 
     @Override
+    public void toast(String message, String type) {
+        view.toast(message,type);
+    }
+
+    @Override
     public void onDestroy() {
         view = null;
     }

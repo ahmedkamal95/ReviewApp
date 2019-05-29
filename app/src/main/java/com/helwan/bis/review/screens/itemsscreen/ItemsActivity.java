@@ -62,7 +62,6 @@ public class ItemsActivity extends AppCompatActivity implements ItemsContract.Vi
         Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
     }
 
-
     /**
      * Initialize views
      */
@@ -76,7 +75,6 @@ public class ItemsActivity extends AppCompatActivity implements ItemsContract.Vi
         recyclerView.setAdapter(itemsRecyclerAdapter);
         presenter = new ItemsPresenterImpl(this);
     }
-
 
     /**
      * Check internet connection
@@ -119,6 +117,15 @@ public class ItemsActivity extends AppCompatActivity implements ItemsContract.Vi
         this.itemList.addAll(itemsList);
         itemsRecyclerAdapter.notifyDataSetChanged();
         ProgressBarHelper.getInstance().hideProgressBar(layoutProgressBar);
+    }
+
+    @Override
+    public void toast(String message, String type) {
+        if (type.equals("Error")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+        } else if (type.equals("Success")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+        }
     }
 
     @Override

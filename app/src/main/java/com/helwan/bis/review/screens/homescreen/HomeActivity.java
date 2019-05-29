@@ -174,6 +174,15 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
         return false;
     }
 
+    @Override
+    public void toast(String message, String type) {
+        if (type.equals("Error")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+        } else if (type.equals("Success")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+        }
+    }
+
     /**
      * Handle Backpressed to close app
      */

@@ -69,6 +69,7 @@ public class FirebaseServices {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                presenter.toast(databaseError.getMessage(), "Error");
             }
         });
     }
@@ -87,6 +88,7 @@ public class FirebaseServices {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                presenter.toast(databaseError.getMessage(), "Error");
             }
         });
     }
@@ -106,6 +108,7 @@ public class FirebaseServices {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
+                        presenter.toast(databaseError.getMessage(), "Error");
                     }
                 });
     }
@@ -124,6 +127,7 @@ public class FirebaseServices {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                presenter.toast(databaseError.getMessage(), "Error");
             }
         });
     }
@@ -142,6 +146,7 @@ public class FirebaseServices {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                presenter.toast(databaseError.getMessage(), "Error");
             }
         });
     }
@@ -160,6 +165,7 @@ public class FirebaseServices {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                presenter.toast(databaseError.getMessage(), "Error");
             }
         });
     }
@@ -178,6 +184,7 @@ public class FirebaseServices {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                presenter.toast(databaseError.getMessage(), "Error");
             }
         });
     }
@@ -223,19 +230,19 @@ public class FirebaseServices {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                    presenter.toast(databaseError.getMessage(), "Error");
                 }
             });
         }
     }
 
-    public void insertProduct(AddItemPresenterImpl addItemPresenter, Item item, String mainCategoryName, String brandName, int itemCount) {
+    public void insertProduct(AddItemPresenterImpl presenter, Item item, String mainCategoryName, String brandName, int itemCount) {
         myRef = database.getReference("mainCategory").child(mainCategoryName).child("brands").child(brandName).child("items").child(item.getName());
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    addItemPresenter.itemExists(true);
+                    presenter.itemExists(true);
                 } else {
                     myRef = database.getReference("search").child(item.getName());
                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -244,19 +251,19 @@ public class FirebaseServices {
                             if (dataSnapshot.exists()) {
                                 Search search1 = dataSnapshot.getValue(Search.class);
                                 if (search1 != null && search1.getBrand().equals(brandName) && search1.getMainCategory().equals(mainCategoryName)) {
-                                    addItemPresenter.itemExists(true);
+                                    presenter.itemExists(true);
                                 } else {
                                     item.setName(item.getName() + " " + brandName);
-                                    addProduct(addItemPresenter, item, mainCategoryName, brandName, itemCount);
+                                    addProduct(presenter, item, mainCategoryName, brandName, itemCount);
                                 }
                             } else {
-                                addProduct(addItemPresenter, item, mainCategoryName, brandName, itemCount);
+                                addProduct(presenter, item, mainCategoryName, brandName, itemCount);
                             }
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-                            addItemPresenter.toast(databaseError.getMessage(),"Error");
+                            presenter.toast(databaseError.getMessage(), "Error");
                         }
                     });
 
@@ -265,13 +272,13 @@ public class FirebaseServices {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                addItemPresenter.toast(databaseError.getMessage(),"Error");
+                presenter.toast(databaseError.getMessage(), "Error");
 
             }
         });
     }
 
-    private void addProduct(AddItemPresenterImpl addItemPresenter, Item item, String mainCategoryName, String brandName, int itemCount){
+    private void addProduct(AddItemPresenterImpl presenter, Item item, String mainCategoryName, String brandName, int itemCount) {
         myRef = database.getReference("mainCategory").child(mainCategoryName).child("brands").child(brandName).child("items").child(item.getName());
         myRef.setValue(item);
         Search search = new Search();
@@ -288,10 +295,10 @@ public class FirebaseServices {
         int count = itemCount + 1;
         myRef.setValue(count);
 
-        addItemPresenter.itemExists(false);
+        presenter.itemExists(false);
     }
 
-    public void insertImage(AddItemPresenterImpl addItemPresenter, String
+    public void insertImage(AddItemPresenterImpl presenter, String
             mainCategoryName, String brandName, String itemName, HashMap<String, String> images) {
         myRef = database.getReference("mainCategory").child(mainCategoryName).child("brands").child(brandName).child("items").child(itemName).child("images");
         myRef.setValue(images);
@@ -300,12 +307,12 @@ public class FirebaseServices {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                addItemPresenter.uploadFinish();
+                presenter.uploadFinish();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                addItemPresenter.toast(databaseError.getMessage(),"Error");
+                presenter.toast(databaseError.getMessage(), "Error");
             }
         });
 

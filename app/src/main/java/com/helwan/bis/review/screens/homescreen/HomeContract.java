@@ -8,12 +8,16 @@ public interface HomeContract {
 
     interface View {
         void setMainCategoryList(List<MainCategoryItem> mainCategoryList);
+
+        void toast(String message, String type);
     }
 
     interface Presenter {
         void getMainCategory();
 
         void setMainCategoryList(List<MainCategoryItem> mainCategoryList);
+
+        void toast(String message, String type);
 
         void onDestroy();
     }

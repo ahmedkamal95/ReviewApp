@@ -10,6 +10,8 @@ public interface ItemDetailsContract {
         void setCommentsList(List<Comment> comments);
 
         void updateComments(String msg, String comment, String displayName, String uid, Float rateSum);
+
+        void toast(String message, String type);
     }
 
     interface Presenter {
@@ -22,6 +24,8 @@ public interface ItemDetailsContract {
         void updateComments(String msg, String comment, String displayName, String uid, Float rateSum);
 
         String getUserId();
+
+        void toast(String message, String type);
 
         void onDestroy();
     }

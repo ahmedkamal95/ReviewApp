@@ -9,12 +9,16 @@ public interface ItemsContract {
 
     interface View {
         void setItemsList(List<Item> items);
+
+        void toast(String message, String type);
     }
 
     interface Presenter {
         void getItems(String mainCategory, String brandName);
 
         void setItemsList(List<Item> items);
+
+        void toast(String message, String type);
 
         void onDestroy();
     }

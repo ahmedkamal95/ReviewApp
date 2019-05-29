@@ -241,6 +241,16 @@ public class ItemDetailsActivity extends AppCompatActivity implements ItemDetail
     }
 
     @Override
+    public void toast(String message, String type) {
+        alertDialog.dismiss();
+        if (type.equals("Error")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+        } else if (type.equals("Success")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+        }
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;

@@ -60,7 +60,6 @@ public class BrandsActivity extends AppCompatActivity implements BrandsContract.
         Objects.requireNonNull(toolbar.getNavigationIcon()).setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
     }
 
-
     /**
      * Initialize views
      */
@@ -74,7 +73,6 @@ public class BrandsActivity extends AppCompatActivity implements BrandsContract.
         recyclerView.setAdapter(brandsRecyclerAdapter);
         presenter = new BrandsPresenterImpl(this);
     }
-
 
     /**
      * Check internet connection
@@ -92,7 +90,7 @@ public class BrandsActivity extends AppCompatActivity implements BrandsContract.
             if (CheckInternetConnectionHelper.getInstance(this).checkInternet()) {
                 getAllBrands();
             } else {
-                FancyToast.makeText(this,"No Internet Connection",FancyToast.LENGTH_SHORT,FancyToast.ERROR,false).show();
+                FancyToast.makeText(this, "No Internet Connection", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
             }
         });
     }
@@ -117,6 +115,15 @@ public class BrandsActivity extends AppCompatActivity implements BrandsContract.
         this.brandList.addAll(brands);
         brandsRecyclerAdapter.notifyDataSetChanged();
         ProgressBarHelper.getInstance().hideProgressBar(layoutProgressBar);
+    }
+
+    @Override
+    public void toast(String message, String type) {
+        if (type.equals("Error")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+        } else if (type.equals("Success")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+        }
     }
 
     @Override

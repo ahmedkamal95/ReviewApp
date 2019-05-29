@@ -74,9 +74,8 @@ public class LoginFragment extends Fragment {
                 }
             }
         });
-
-        btnSignupLoginPage.setOnClickListener(v -> communicator.replaceFragment("signupFragment"));
-
+        btnSignupLoginPage.setOnClickListener(v ->
+                communicator.replaceFragment("signupFragment"));
         btnForgetPassword.setOnClickListener(v -> {
             AlertDialog dialogBuilder = new AlertDialog.Builder(Objects.requireNonNull(getActivity())).create();
             Objects.requireNonNull(dialogBuilder.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
@@ -98,7 +97,6 @@ public class LoginFragment extends Fragment {
                     }
                 }
             });
-
             dialogBuilder.setView(dialogView);
             dialogBuilder.show();
 

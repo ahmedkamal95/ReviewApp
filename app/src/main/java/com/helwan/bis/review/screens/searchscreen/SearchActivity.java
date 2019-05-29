@@ -1,8 +1,8 @@
 package com.helwan.bis.review.screens.searchscreen;
 
 import android.graphics.PorterDuff;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,12 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.helwan.bis.review.R;
-import com.helwan.bis.review.model.dao.Item;
 import com.helwan.bis.review.model.dao.Search;
-import com.helwan.bis.review.screens.itemsscreen.ItemsActivity;
-import com.helwan.bis.review.screens.itemsscreen.ItemsContract;
-import com.helwan.bis.review.screens.itemsscreen.ItemsPresenterImpl;
-import com.helwan.bis.review.screens.itemsscreen.adapters.ItemsRecyclerAdapter;
 import com.helwan.bis.review.screens.searchscreen.adapters.SearchRecyclerAdapter;
 import com.helwan.bis.review.utilities.CheckInternetConnectionHelper;
 import com.helwan.bis.review.utilities.ProgressBarHelper;
@@ -84,7 +79,6 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         presenter = new SearchPresenterImpl(this);
     }
 
-
     /**
      * Check internet connection
      * And show no internet connection message with button try again
@@ -124,11 +118,20 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     public void setSearchList(List<Search> searchList) {
         this.searchList.clear();
         this.searchList.addAll(searchList);
-        if (searchList.isEmpty()){
+        if (searchList.isEmpty()) {
             txtNoResult.setVisibility(View.VISIBLE);
         }
         searchRecyclerAdapter.notifyDataSetChanged();
         ProgressBarHelper.getInstance().hideProgressBar(layoutProgressBar);
+    }
+
+    @Override
+    public void toast(String message, String type) {
+        if (type.equals("Error")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+        } else if (type.equals("Success")) {
+            FancyToast.makeText(this, message, FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+        }
     }
 
     @Override

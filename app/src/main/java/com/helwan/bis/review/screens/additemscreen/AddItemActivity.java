@@ -102,9 +102,7 @@ public class AddItemActivity extends AppCompatActivity implements AddItemContrac
         btnAddProduct.setOnClickListener(view -> addProduct());
 
         Button btnSelectPhotos = findViewById(R.id.btnSelectPhotos);
-        btnSelectPhotos.setOnClickListener(view -> {
-            openFileChooser();
-        });
+        btnSelectPhotos.setOnClickListener(view -> openFileChooser());
 
         spinnerMainCategory = findViewById(R.id.spinnerMainCategory);
         spinnerMainCategory.setOnSpinnerItemSelectedListener((parent, view, position, id) -> {

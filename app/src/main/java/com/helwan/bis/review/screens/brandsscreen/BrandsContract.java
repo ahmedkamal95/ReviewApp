@@ -8,12 +8,16 @@ public interface BrandsContract {
 
     interface View {
         void setBrandsList(List<Brand> brands);
+
+        void toast(String message, String type);
     }
 
     interface Presenter {
         void getBrands(String mainCategory);
 
         void setBrandsList(List<Brand> brands);
+
+        void toast(String message, String type);
 
         void onDestroy();
     }
