@@ -26,5 +26,7 @@
     <string name="noInternetMessage">No internet connection found. check your connection and try again</string>
     <string name="loading">Loading…</string>
     <string name="search">Search</string>
+    <string name="terms">Terms and Conditions</string>
+    <string name="ok">OK</string>
 
 </resources>

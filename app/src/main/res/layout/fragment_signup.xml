@@ -266,7 +266,6 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -294,6 +293,22 @@
                 android:textColor="@color/gradient_start"
                 android:textSize="16sp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnTerms"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="@string/terms"
+            android:textAllCaps="false"
+            android:textColor="@color/gradient_start"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </ScrollView>

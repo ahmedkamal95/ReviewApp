@@ -1,12 +1,15 @@
 package com.helwan.bis.review.screens.loginscreen.fragments;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +25,10 @@ import com.helwan.bis.review.screens.loginscreen.LoginCommunicator;
 import com.helwan.bis.review.utilities.CheckInternetConnectionHelper;
 import com.helwan.bis.review.utilities.DatePickerFragmentHelper;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
@@ -31,7 +38,7 @@ public class SignupFragment extends Fragment implements DatePickerDialog.OnDateS
     private TextView txtBirthdateSignup;
     private CheckBox checkboxMale, checkboxFemale;
     private LoginCommunicator communicator;
-    private Button btnCreateAccount, btnLoginSignupPage;
+    private Button btnCreateAccount, btnLoginSignupPage, btnTerms;
     private User user;
 
     /**
@@ -75,6 +82,7 @@ public class SignupFragment extends Fragment implements DatePickerDialog.OnDateS
         checkboxFemale = view.findViewById(R.id.checkboxFemale);
         btnCreateAccount = view.findViewById(R.id.btnCreateAccount);
         btnLoginSignupPage = view.findViewById(R.id.btnLoginSignupPage);
+        btnTerms = view.findViewById(R.id.btnTerms);
     }
 
     /**
@@ -119,6 +127,29 @@ public class SignupFragment extends Fragment implements DatePickerDialog.OnDateS
 
         btnLoginSignupPage.setOnClickListener(v -> communicator.replaceFragment("loginFragment"));
 
+        btnTerms.setOnClickListener(v -> {
+            try {
+                InputStream inputStream = getActivity().getAssets().open("terms.txt");
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader BR = new BufferedReader(inputStreamReader);
+                String line;
+                StringBuilder msg = new StringBuilder();
+                while ((line = BR.readLine()) != null) {
+                    msg.append(line + "\n");
+                }
+
+                new AlertDialog.Builder(getContext())
+                        .setTitle(getString(R.string.terms))
+                        .setMessage(Html.fromHtml(msg + ""))
+                        .setNegativeButton(getString(R.string.ok), (arg0, arg1) -> {
+
+                        })
+                        .show();
+            } catch (IOException e) {
+                Log.e("Error", "addListeners: " + e.getLocalizedMessage());
+            }
+        });
     }
 
     @SuppressLint("SetTextI18n")
